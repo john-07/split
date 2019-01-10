@@ -24,8 +24,14 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any addi tional setup after loading the view, typically from a nib.
+        let item = UIBarButtonItem(title: "all", style: .plain, target: self, action: #selector(DetailViewController.showAll(_:)));
+        navigationItem.rightBarButtonItem = item;
         configureView()
+    }
+    
+    @objc func showAll(_ sender:Any!){
+        splitViewController?.preferredDisplayMode = .allVisible;
     }
 
     var detailItem: NSDate? {

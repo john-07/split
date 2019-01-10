@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
+        splitViewController.preferredDisplayMode = .primaryHidden;
         return true
     }
 
@@ -56,6 +57,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return false
     }
+    
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        print(displayMode);
+    }
 
 }
 
+extension UISplitViewController.DisplayMode:CustomStringConvertible{
+    public var description: String{
+        switch self {
+        case .allVisible: return "allVisble";
+        case .automatic: return "automatic";
+        case .primaryHidden: return "primaryHidden";
+        case .primaryOverlay: return "primaryOverlay";
+        }
+    }
+}
